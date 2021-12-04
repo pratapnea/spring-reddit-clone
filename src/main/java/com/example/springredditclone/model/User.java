@@ -8,29 +8,27 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 @Data
-@Entity
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = IDENTITY)
 	private Long userId;
 	@NotBlank(message = "Username is required")
-	private String userName;
+	private String username;
 	@NotBlank(message = "Password is required")
 	private String password;
 	@Email
-	@NotBlank(message = "Email is required")
+	@NotEmpty(message = "Email is required")
 	private String email;
-	private Instant createdDate;
+	private Instant created;
 	private boolean enabled;
-
 }
